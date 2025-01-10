@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelea	f.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${producto.idProducto ne null ? 'Editar Producto' : 'Registro de Producto'}]]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3f3e7;
+            margin: 0;
+            padding: 0;
+        }
+
+        h3 {
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        form {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Contenedor principal -->
+    <div class="container pt-3">
+        <!-- Encabezado -->
+        <h3 class="mb-4">[[${producto.idProducto ne null ? 'Editar Producto' : 'Registro de Producto'}]]</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <!-- Formulario -->
+                <form action="" method="post" th:object="${producto}">
+                    <!-- Campo: Nombre del Producto -->
+                    <div class="mb-3">
+                        <label for="nombreProducto" class="form-label">Nombre del producto</label>
+                        <input id="nombreProducto" type="text" placeholder="Digite el nombre del producto" 
+                               th:field="*{nombreProducto}" 
+                               class="form-control" 
+                               th:errorClass="is-invalid">
+                        <div th:if="${#fields.hasErrors('nombreProducto')}" 
+                             th:errors="*{nombreProducto}" 
+                             class="invalid-feedback"></div>
+                    </div>
+
+                    <!-- Campo: Stock -->
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input id="stock" type="text" placeholder="Digite la cantidad del producto" 
+                               th:field="*{stock}" 
+                               class="form-control" 
+                               th:errorClass="is-invalid">
+                        <div th:if="${#fields.hasErrors('stock')}" 
+                             th:errors="*{stock}" 
+                             class="invalid-feedback"></div>
+                    </div>
+
+                    <!-- Campo: Fecha de Vencimiento -->
+                    <div class="mb-3">
+                        <label for="fechaProducto" class="form-label">Fecha de vencimiento</label>
+                        <input id="fechaProducto" type="date" 
+                               th:field="*{fechaProducto}" 
+                               class="form-control" 
+                               th:errorClass="is-invalid">
+                        <div th:if="${#fields.hasErrors('fechaProducto')}" 
+                             th:errors="*{fechaProducto}" 
+                             class="invalid-feedback"></div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success btn-lg me-2" type="submit">Guardar</button>
+                        <a href="/" class="btn btn-outline-secondary btn-lg">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+
+</html>
